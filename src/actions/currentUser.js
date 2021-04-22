@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { LOGIN_USER, LOGOUT_USER } from "./types";
+import { LOGIN_USER } from "./types";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000/";
 

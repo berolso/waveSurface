@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 /*
   converts useState into useLocalStorage
@@ -12,20 +12,19 @@ import { useState, useEffect } from 'react'
   use the return item and set item to sync localStorage with global context
 */
 
-const useLocalStorage = (key,firstValue = null) => {
-  const initialValue = localStorage.getItem(key) | firstValue
-
+const useLocalStorage = (key, firstValue = null) => {
+  const initialValue = localStorage.getItem(key) || firstValue;
   const [item, setItem] = useState(initialValue);
 
   useEffect(() => {
-    if(item === null){
-      localStorage.removeItem(key)
+    if (item === null) {
+      localStorage.removeItem(key);
     } else {
-      localStorage.setItem(key,item)
+      localStorage.setItem(key, item);
     }
-  }, [key,item])
+  }, [key, item]);
 
-  return[item,setItem]
-}
+  return [item, setItem];
+};
 
-export default useLocalStorage
+export default useLocalStorage;

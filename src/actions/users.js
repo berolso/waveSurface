@@ -1,17 +1,19 @@
 
 import axios from "axios";
+import WaveServer from '../api/waveServer'
 
 import { GET_ALL_USERS, GET_USER, ADD_USER } from "./types";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000/";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
 export const getAllUsersFromAPI = () => {
   return async (dispatch) => {
     try{
-      const res = await axios.get(`${API_URL}/users`);
+      // const res = await axios.get(`${API_URL}users`);
+      const res = await WaveServer.request('users')
       return dispatch({
         type: GET_ALL_USERS,
-        data: res.data.users
+        data: res.users
       });
     } catch(err){
       console.log(err)
