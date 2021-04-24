@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import WaveServer from "../api/waveServer";
+import UserContext from "../context/UserContext";
+
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,19 +16,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import ImageIcon from "@material-ui/icons/Image";
 import ChatIcon from "@material-ui/icons/Chat";
 import { useHistory } from "react-router";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,7 +55,8 @@ const useStyles = makeStyles((theme) => ({
 
 const InstructionalRequest = () => {
   const classes = useStyles();
-  const history = useHistory()
+  const history = useHistory();
+  const { currentUser } = useContext(UserContext);
 
   const initialState = {};
 
@@ -74,14 +65,14 @@ const InstructionalRequest = () => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      // const result = await login(formData);
-      // if (result.success) {
-        // setCurrentUser();
-        history.push(`/instructionals`);
-        console.log("logged in");
+      const data = { ...formData, ...currentUser };
+      const result = await WaveServer.sendRequestToSlack(data);
+      console.log(result);
+      // history.push(`/instructionals`);
+      console.log("request success");
       // }
     } catch (err) {
-      console.log("failed login");
+      console.log("request failed");
     }
   };
 
@@ -115,10 +106,11 @@ const InstructionalRequest = () => {
               {`Briefly describe the request`}
             </Typography>
             <TextField
-              id="outlined-multiline-flexible"
+              id="description"
               label="Request Description"
               multiline
               rows={6}
+              name="description"
               value={formData.description}
               onChange={handleChange}
               fullWidth
@@ -164,9 +156,7 @@ const InstructionalRequest = () => {
                 </Link>
               </Grid>
             </Grid>
-            <Box mt={5}>
-              <Copyright />
-            </Box>
+            <Box mt={5}>{/* <Copyright /> */}</Box>
           </form>
         </div>
       </Grid>

@@ -8,7 +8,7 @@ class WaveServer {
   static async request(endpoint, data = {}, method = "get") {
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${WaveServer.token}` };
-    const params = (method === "get") ? data : {};
+    const params = method === "get" ? data : {};
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
@@ -23,9 +23,13 @@ class WaveServer {
   }
 
   static async login(data) {
-    console.log(data);
-    let res = await this.request(`auth/token`,  data, "post");
+    let res = await this.request(`auth/token`, data, "post");
     return res.token;
+  }
+
+  static async sendRequestToSlack(data) {
+    let res = await this.request("instructionals/request", data, "post");
+    return res;
   }
 }
 

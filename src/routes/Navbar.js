@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    textDecoration: "none",
   },
   username: {},
 }));
@@ -74,11 +75,7 @@ const Navbar = () => {
     <>
       {currentUser && currentUser.isFullAccess ? (
         <Tabs value={false}>
-          <Tab
-            label="Users"
-            component={NavLink}
-            to="/users"
-          />
+          <Tab label="Users" component={NavLink} to="/users" />
           <Tab
             label="Instructionals"
             component={NavLink}
@@ -144,7 +141,13 @@ const Navbar = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" className={classes.title}>
+            <Typography
+              variant="h5"
+              color='inherit'
+              className={classes.title}
+              component={NavLink}
+              to="/"
+            >
               waveSurface
             </Typography>
             <Tabs value={false}>
