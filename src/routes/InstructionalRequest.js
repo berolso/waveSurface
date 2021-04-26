@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import WaveServer from "../api/waveServer";
 import UserContext from "../context/UserContext";
+import DropZone from "./DropZone";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -13,7 +14,6 @@ import Grid from "@material-ui/core/Grid";
 
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import ImageIcon from "@material-ui/icons/Image";
 import ChatIcon from "@material-ui/icons/Chat";
 import { useHistory } from "react-router";
 
@@ -61,13 +61,14 @@ const InstructionalRequest = () => {
   const initialState = {};
 
   const [formData, setFormData] = useState(initialState);
+  const [dropZoneFiles, setDropZoneFiles] = useState([]);
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
       const data = { ...formData, ...currentUser };
-      const result = await WaveServer.sendRequestToSlack(data);
-      console.log(result);
+
+      const result = await WaveServer.sendRequestToSlack(data, dropZoneFiles);
       // history.push(`/instructionals`);
       console.log("request success");
       // }
@@ -85,82 +86,77 @@ const InstructionalRequest = () => {
   };
 
   return (
-    <Grid container component="main" className={classes.root}>
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <ChatIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Upload request
-          </Typography>
-          <form onSubmit={handleSubmit} className={classes.form} noValidate>
-            <Typography
-              variant="h5"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              {`Briefly describe the request`}
+    <>
+      <Grid container component="main" className={classes.root}>
+        <CssBaseline />
+        <Grid item xs={false} sm={2} className={classes.image} />
+        <Grid item xs={12} sm={10} component={Paper} elevation={6} square>
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <ChatIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Upload request
             </Typography>
-            <TextField
-              id="description"
-              label="Request Description"
-              multiline
-              rows={6}
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              fullWidth
-              variant="outlined"
-            />
-            <input
-              accept="image/*"
-              className={classes.input}
-              id="contained-button-file"
-              multiple
-              type="file"
-            />
-            <label htmlFor="contained-button-file">
+            <form onSubmit={handleSubmit} className={classes.form} noValidate>
+              <Typography
+                variant="h5"
+                align="center"
+                color="textSecondary"
+                paragraph
+              >
+                {`Briefly describe the request`}
+              </Typography>
+              <TextField
+                id="description"
+                label="Request Description"
+                multiline
+                rows={6}
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                fullWidth
+                variant="outlined"
+              />
+              <input
+                accept="image/*"
+                className={classes.input}
+                id="contained-button-file"
+                multiple
+                type="file"
+              />
+
+              <div>
+                <DropZone files={dropZoneFiles} setFiles={setDropZoneFiles} />
+              </div>
+
               <Button
+                type="submit"
+                fullWidth
                 variant="contained"
                 color="primary"
-                component="span"
-                className={classes.button}
-                startIcon={<ImageIcon />}
+                className={classes.submit}
               >
-                Upload Image
+                Submit Request
               </Button>
-            </label>
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Submit Request
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="#" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-            <Box mt={5}>{/* <Copyright /> */}</Box>
-          </form>
-        </div>
+              <Box mt={5}>{/* <Copyright /> */}</Box>
+            </form>
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 

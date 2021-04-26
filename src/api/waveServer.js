@@ -27,9 +27,23 @@ class WaveServer {
     return res.token;
   }
 
-  static async sendRequestToSlack(data) {
-    let res = await this.request("instructionals/request", data, "post");
-    return res;
+  static async sendRequestToSlack(data, files) {
+    console.log("data", data, files);
+
+    // to send files and JSON need to send as formData
+    let formData = new FormData();
+    // formData.append("file", files);
+    files.forEach((file) => {
+      formData.append("files", file);
+    });
+    formData.append("json", JSON.stringify(data));
+    console.log("form", formData.getAll("file"));
+
+    try {
+      await this.request("instructionals/request", formData, "post");
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 
