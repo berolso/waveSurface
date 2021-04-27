@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-// import { addUser } from "./api/api";
+import WaveServer from "../api/waveServer";
+import useLocalStorage from "../hooks/useLocalStorage";
+import UserContext from "../context/UserContext";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -50,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUpForm = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   const initialState = {
     firstName: "",
@@ -61,18 +64,27 @@ const SignUpForm = () => {
   };
 
   const [formData, setFormData] = useState(initialState);
+  const [formErrors, setFormErrors] = useState([]);
 
-  // const history = useHistory();
+  const { setCurrentUser } = useContext(UserContext);
+
+  const [token, setToken] = useLocalStorage(null);
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    // const res = await addUser(formData);
-    // console.log(res);
-    // if (res.id) {
-    //   history.push(`/users/${res.id}`);
+    try {
+      const apiToken = await WaveServer.signup(formData);
+      console.log(apiToken);
+      setToken(apiToken);
+    } catch (err) {
+      console.error("signup failed", err);
+    }
+
+    // if (token.success) {
+    //   // history.push(`/`);
     // } else {
-    //   console.log(res.errors);
-    //   alert(`woopsy! that didn't work`);
+    //   setFormErrors(res.errors);
+    //   alert(`woopsy! that didn't work`, formErrors);
     // }
   };
 
@@ -164,7 +176,7 @@ const SignUpForm = () => {
                 autoComplete="current-password"
               />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -177,7 +189,7 @@ const SignUpForm = () => {
                 onChange={handleChange}
                 autoComplete="current-Password"
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
