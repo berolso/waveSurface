@@ -22,8 +22,28 @@ class WaveServer {
     return res.user;
   }
 
+  static async update(username, data) {
+    let res = await this.request(`users/${username}`, data, "patch");
+    return res.user;
+  }
+
+  static async updatePermission(username, data) {
+    let res = await this.request(`users/${username}/admin`, data, "patch");
+    return res;
+  }
+
+  static async delete(username) {
+    let res = await this.request(`users/${username}`, null, "delete");
+    return res.user;
+  }
+
   static async login(data) {
     let res = await this.request(`auth/token`, data, "post");
+    return res.token;
+  }
+
+  static async signup(data) {
+    let res = await this.request(`auth/register`, data, "post");
     return res.token;
   }
 

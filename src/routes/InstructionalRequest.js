@@ -15,7 +15,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import ChatIcon from "@material-ui/icons/Chat";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 
 const InstructionalRequest = () => {
   const classes = useStyles();
-  const history = useHistory();
+  // const history = useHistory();
   const { currentUser } = useContext(UserContext);
 
   const initialState = {};
@@ -70,7 +70,7 @@ const InstructionalRequest = () => {
 
       const result = await WaveServer.sendRequestToSlack(data, dropZoneFiles);
       // history.push(`/instructionals`);
-      console.log("request success");
+      console.log("request success",result);
       // }
     } catch (err) {
       console.log("request failed");

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UsersTable from "./UsersTable";
 import { getAllUsersFromAPI } from "../actions/users";
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Users = () => {
+  const [infoLoaded, setInfoLoaded] = useState(false);
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -37,18 +38,24 @@ export const Users = () => {
   useEffect(() => {
     const getUsers = async () => {
       await dispatch(getAllUsersFromAPI());
+      setInfoLoaded(true);
     };
     if (currentUser) {
       getUsers();
     }
-  }, [dispatch, currentUser]);
+  }, [dispatch, currentUser, setInfoLoaded]);
 
   return (
     <div className={classes.root}>
-      
       <Grid item xs={12}>
         <Paper elevation={3} className={classes.paper}>
-          <UsersTable users={users} />
+          {infoLoaded && (
+            <UsersTable
+              users={users}
+              setInfoLoaded={setInfoLoaded}
+              infoLoaded={infoLoaded}
+            />
+          )}
         </Paper>
       </Grid>
     </div>
