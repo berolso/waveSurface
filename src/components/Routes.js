@@ -9,7 +9,7 @@ import InstructionalRequest from "./InstructionalRequest";
 
 import { Users } from "./Users";
 
-export const routes = () => {
+export const Routes = () => {
   return (
     <div>
       <Switch>

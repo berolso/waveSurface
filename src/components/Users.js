@@ -40,11 +40,13 @@ export const Users = () => {
       await dispatch(getAllUsersFromAPI());
       setInfoLoaded(true);
     };
-    if (currentUser) {
+    if (currentUser && !infoLoaded) {
       getUsers();
     }
-  }, [dispatch, currentUser, setInfoLoaded]);
+  }, [dispatch, currentUser, infoLoaded, setInfoLoaded]);
 
+  console.log("infoLoaded", infoLoaded);
+  console.log("users", users);
   return (
     <div className={classes.root}>
       <Grid item xs={12}>
