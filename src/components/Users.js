@@ -43,7 +43,7 @@ export const Users = () => {
     if (currentUser && !infoLoaded) {
       getUsers();
     }
-  }, [dispatch, currentUser, infoLoaded, setInfoLoaded]);
+  }, [dispatch, currentUser, infoLoaded]);
 
   console.log("infoLoaded", infoLoaded);
   console.log("users", users);

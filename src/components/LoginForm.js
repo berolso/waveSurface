@@ -65,7 +65,7 @@ function Copyright() {
 const LoginForm = () => {
   const classes = useStyles();
   const history = useHistory();
-  const { login, setCurrentUser } = useContext(UserContext);
+  const { login } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -77,7 +77,6 @@ const LoginForm = () => {
     try {
       const result = await login(formData);
       if (result.success) {
-        setCurrentUser();
         history.push(`/`);
         console.log("logged in");
       }

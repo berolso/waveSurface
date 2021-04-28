@@ -64,28 +64,19 @@ const SignUpForm = () => {
   };
 
   const [formData, setFormData] = useState(initialState);
-  const [formErrors, setFormErrors] = useState([]);
+  // const [formErrors, setFormErrors] = useState([]);
 
-  const { setCurrentUser } = useContext(UserContext);
-
-  const [token, setToken] = useLocalStorage(null);
+  const { setToken } = useContext(UserContext);
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
       const apiToken = await WaveServer.signup(formData);
-      console.log(apiToken);
       setToken(apiToken);
+      history.push("/");
     } catch (err) {
       console.error("signup failed", err);
     }
-
-    // if (token.success) {
-    //   // history.push(`/`);
-    // } else {
-    //   setFormErrors(res.errors);
-    //   alert(`woopsy! that didn't work`, formErrors);
-    // }
   };
 
   const handleChange = (evt) => {
