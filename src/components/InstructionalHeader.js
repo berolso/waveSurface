@@ -2,10 +2,13 @@ import React from "react";
 
 import { Link as RRLink } from "react-router-dom";
 
+import InstructionalSectionModal from "./InstructionalSectionModal";
+
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import Modal from "@material-ui/core/Modal";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -17,6 +20,16 @@ const useStyles = makeStyles((theme) => ({
 
 const InstructionalHeader = () => {
   const classes = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -46,9 +59,17 @@ const InstructionalHeader = () => {
               </Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" color="primary">
+              <Button variant="outlined" color="primary" onClick={handleOpen}>
                 View sections
               </Button>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+              >
+                <InstructionalSectionModal />
+              </Modal>
             </Grid>
           </Grid>
         </div>
