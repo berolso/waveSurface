@@ -133,7 +133,7 @@ const DeleteButton = ({ username, setInfoLoaded }) => {
       console.error("failed to delete", err);
     }
 
-    console.log(username);
+    console.log(`deleted ${username}`);
   };
   const classes = useStyles();
   return (

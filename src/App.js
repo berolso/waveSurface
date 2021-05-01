@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     const getCurrentUser = async () => {
-      console.log("token", token);
+      // console.log("token", token);
       if (token) {
         try {
           let { username } = jwt.decode(token);
@@ -51,7 +51,6 @@ function App() {
     setCurrentUser(null);
     setToken(null);
   };
-
   return (
     <div className="App">
       <UserContext.Provider

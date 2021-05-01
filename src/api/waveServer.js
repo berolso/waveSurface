@@ -17,6 +17,17 @@ class WaveServer {
     }
   }
 
+  // auth
+  static async login(data) {
+    let res = await this.request(`auth/token`, data, "post");
+    return res.token;
+  }
+
+  static async signup(data) {
+    let res = await this.request(`auth/register`, data, "post");
+    return res.token;
+  }
+  // users
   static async getCurrentUser(username) {
     let res = await this.request(`users/${username}`);
     return res.user;
@@ -37,14 +48,10 @@ class WaveServer {
     return res.user;
   }
 
-  static async login(data) {
-    let res = await this.request(`auth/token`, data, "post");
-    return res.token;
-  }
-
-  static async signup(data) {
-    let res = await this.request(`auth/register`, data, "post");
-    return res.token;
+  // instructionals
+  static async deleteInstructional(id) {
+    let res = await this.request(`instructionals/${id}`, null, "delete");
+    return res;
   }
 
   static async sendRequestToSlack(data, files) {

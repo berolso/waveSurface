@@ -4,6 +4,7 @@ import {
   GET_ALL_ISTRUCTIONALS,
   GET_INSTRUCTIONAL,
   ADD_INSTRUCTIONAL,
+  DELETE_INSTRUCTIONAL,
 } from "./types";
 
 export const getAllInstructionalsFromAPI = () => {
@@ -23,19 +24,29 @@ export const getAllInstructionalsFromAPI = () => {
 export const getInstructionalFromAPI = (id) => {
   return async () => {
     const res = await WaveServer.request(`instructionals/${id}`);
-    return ({
+    return {
       type: GET_INSTRUCTIONAL,
       data: res,
-    });
+    };
   };
 };
 
 export const registerNewInstructional = (instructional) => {
   return async () => {
     const res = await WaveServer.request(`instructionals`, { instructional });
-    return ({
+    return {
       type: ADD_INSTRUCTIONAL,
       data: res,
-    });
+    };
   };
+};
+
+export const deleteInstructional = (id) => {
+  return (async () => {
+    const res = await WaveServer.deleteInstructional(id);
+    return {
+      type: DELETE_INSTRUCTIONAL,
+      id: res.deleted,
+    };
+  })();
 };

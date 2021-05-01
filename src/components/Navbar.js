@@ -50,26 +50,26 @@ const Navbar = () => {
   };
 
   // for auth testing
-  const UserTable = () => {
-    return (
-      <>
-        <table style={{ marginLeft: "auto", marginRight: "auto" }}>
-          <tbody>
-            <tr>
-              {currentUser &&
-                Object.keys(currentUser).map((e, i) => <th key={i}> {e} </th>)}
-            </tr>
-            <tr>
-              {currentUser &&
-                Object.values(currentUser).map((e, i) => (
-                  <td key={i}> {e} </td>
-                ))}
-            </tr>
-          </tbody>
-        </table>
-      </>
-    );
-  };
+  // const UserTable = () => {
+  //   return (
+  //     <>
+  //       <table style={{ marginLeft: "auto", marginRight: "auto" }}>
+  //         <tbody>
+  //           <tr>
+  //             {currentUser &&
+  //               Object.keys(currentUser).map((e, i) => <th key={i}> {e} </th>)}
+  //           </tr>
+  //           <tr>
+  //             {currentUser &&
+  //               Object.values(currentUser).map((e, i) => (
+  //                 <td key={i}> {e} </td>
+  //               ))}
+  //           </tr>
+  //         </tbody>
+  //       </table>
+  //     </>
+  //   );
+  // };
 
   const LoggedIn = (
     <>
@@ -158,7 +158,7 @@ const Navbar = () => {
             {currentUser ? LoggedIn : LoggedOut}
           </Toolbar>
         </AppBar>
-        <UserTable />
+        {/* <UserTable /> */}
       </div>
     </>
   );

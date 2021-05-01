@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import WaveServer from "../api/waveServer";
-import useLocalStorage from "../hooks/useLocalStorage";
 import UserContext from "../context/UserContext";
 
 import Avatar from "@material-ui/core/Avatar";
