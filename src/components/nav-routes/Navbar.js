@@ -1,11 +1,14 @@
 import React, { useState, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
-import UserContext from "../context/UserContext";
+import UserContext from "../../context/UserContext";
+import SideDrawer from "./SideDrawer";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
+
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
@@ -28,11 +31,23 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
   },
   username: {},
+  container: { display: "flex" },
 }));
 
 const Navbar = () => {
   const classes = useStyles();
+
   const { currentUser, logout } = useContext(UserContext);
+
+  const [drawerState, setdrawerState] = useState(false);
+
+  const handleSideDrawer = () => {
+    setdrawerState(true);
+  };
+  const handleDrawerClose = () => {
+    setdrawerState(false);
+  };
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -51,6 +66,7 @@ const Navbar = () => {
 
   // for auth testing
   // const UserTable = () => {
+  //   console.log(currentUser)
   //   return (
   //     <>
   //       <table style={{ marginLeft: "auto", marginRight: "auto" }}>
@@ -71,18 +87,25 @@ const Navbar = () => {
   //   );
   // };
 
+  const AdminMenu = (
+    <>
+      <MenuItem onClick={handleClose} component={NavLink} to="/users">
+        Users
+      </MenuItem>
+    </>
+  );
+
   const LoggedIn = (
     <>
-      {currentUser && currentUser.isFullAccess ? (
+      {currentUser && currentUser.isFullAccess && (
         <Tabs value={false}>
-          <Tab label="Users" component={NavLink} to="/users" />
           <Tab
             label="Instructionals"
             component={NavLink}
             to="/instructionals"
           />
         </Tabs>
-      ) : null}
+      )}
       <Typography variant="h6" className={classes.username}>
         {currentUser ? currentUser.username : "null"}
       </Typography>
@@ -110,8 +133,10 @@ const Navbar = () => {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Profile 🚧</MenuItem>
+        <MenuItem onClick={handleClose}>My account 🚧</MenuItem>
+        {currentUser && currentUser.isAdmin && AdminMenu}
+        <Divider />
         <MenuItem onClick={handleLogOut}>Logout</MenuItem>
       </Menu>
     </>
@@ -129,38 +154,41 @@ const Navbar = () => {
   );
 
   return (
-    <>
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="h5"
-              color='inherit'
-              className={classes.title}
-              component={NavLink}
-              to="/"
-            >
-              waveSurface
-            </Typography>
-            <Tabs value={false}>
-              <Tab label="About" component={NavLink} to="/about" />
-              <Tab label="Preview" component={NavLink} to="/preview" />
-              <Tab label="Bomian" component={NavLink} to="/bomian" />
-            </Tabs>
-            {currentUser ? LoggedIn : LoggedOut}
-          </Toolbar>
-        </AppBar>
-        {/* <UserTable /> */}
-      </div>
-    </>
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleSideDrawer}
+            className={classes.menuButton}
+          >
+            <MenuIcon />
+          </IconButton>
+
+          <SideDrawer
+            drawerState={drawerState}
+            handleClose={handleDrawerClose}
+          />
+
+          <Typography
+            variant="h5"
+            color="inherit"
+            className={classes.title}
+            component={NavLink}
+            to="/"
+          >
+            waveSurface
+          </Typography>
+          <Tabs value={false}>
+            <Tab label="Preview" component={NavLink} to="/preview" />
+          </Tabs>
+          {currentUser ? LoggedIn : LoggedOut}
+        </Toolbar>
+      </AppBar>
+      {/* <UserTable /> */}
+    </div>
   );
 };
 export default Navbar;

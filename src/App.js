@@ -1,14 +1,14 @@
 // import logo from './logo.svg';
 import React, { useState, useEffect } from "react";
 import jwt from "jsonwebtoken";
-import { Routes } from "./components/Routes";
+import { Routes } from "./components/nav-routes/Routes";
 import "./App.css";
 
 import UserContext from "./context/UserContext";
 
 import useLocalStorage from "./hooks/useLocalStorage";
 import WaveServer from "./api/waveServer";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/nav-routes/Navbar";
 
 export const TOKEN_STORAGE_ID = "waveServer-token";
 

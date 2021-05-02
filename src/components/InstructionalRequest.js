@@ -15,6 +15,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import ChatIcon from "@material-ui/icons/Chat";
+import { Container } from "@material-ui/core";
 // import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
@@ -70,7 +71,7 @@ const InstructionalRequest = () => {
 
       const result = await WaveServer.sendRequestToSlack(data, dropZoneFiles);
       // history.push(`/instructionals`);
-      console.log("request success",result);
+      console.log("request success", result);
       // }
     } catch (err) {
       console.log("request failed");
@@ -126,9 +127,9 @@ const InstructionalRequest = () => {
                 type="file"
               />
 
-              <div>
+              <Container>
                 <DropZone files={dropZoneFiles} setFiles={setDropZoneFiles} />
-              </div>
+              </Container>
 
               <Button
                 type="submit"
@@ -139,19 +140,6 @@ const InstructionalRequest = () => {
               >
                 Submit Request
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Box mt={5}>{/* <Copyright /> */}</Box>
             </form>
           </div>
         </Grid>
