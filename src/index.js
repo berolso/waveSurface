@@ -22,11 +22,11 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
+    {/* <React.StrictMode> */}
       <BrowserRouter>
         <Contexts />
       </BrowserRouter>
-    </React.StrictMode>
+    {/* </React.StrictMode> */}
   </Provider>,
   document.getElementById("root")
 );

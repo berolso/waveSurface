@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
-import UserContext from "../context/UserContext";
-import { deleteInstructional } from "../actions/instructionals";
+import UserContext from "../../context/UserContext";
+import { deleteInstructional } from "../../actions/instructionals";
 
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";

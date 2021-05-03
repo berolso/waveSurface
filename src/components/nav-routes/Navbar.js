@@ -88,11 +88,9 @@ const Navbar = () => {
   // };
 
   const AdminMenu = (
-    <>
-      <MenuItem onClick={handleClose} component={NavLink} to="/users">
-        Users
-      </MenuItem>
-    </>
+    <MenuItem onClick={handleClose} component={NavLink} to="/users">
+      Users
+    </MenuItem>
   );
 
   const LoggedIn = (

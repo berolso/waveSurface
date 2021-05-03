@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import UserContext from "../context/UserContext";
+import UserContext from "../../context/UserContext";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";

@@ -1,5 +1,5 @@
 import React from "react";
-import fullWave from "../media/fullWave.png";
+import fullWave from "../../media/fullWave.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 

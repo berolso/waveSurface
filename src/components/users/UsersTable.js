@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import WaveServer from "../api/waveServer";
+import WaveServer from "../../api/waveServer";
 
 import { DataGrid } from "@material-ui/data-grid";
 import { makeStyles } from "@material-ui/core/styles";

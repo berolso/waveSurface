@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback, useContext } from "react";
 
-import { InstructionalsContext } from "../context/InstructionalsContext";
+import { InstructionalsContext } from "../../context/InstructionalsContext";
 // import UserContext from "../context/UserContext";
 
-import { getAllInstructionalsFromAPI } from "../actions/instructionals";
+import { getAllInstructionalsFromAPI } from "../../actions/instructionals";
 
 import InstructionalHeader from "./InstructionalHeader";
 import InstructionalCard from "./InstructionalCard";

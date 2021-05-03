@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UsersTable from "./UsersTable";
-import { getAllUsersFromAPI } from "../actions/users";
+import { getAllUsersFromAPI } from "../../actions/users";
 
-import UserContext from "../context/UserContext";
+import UserContext from "../../context/UserContext";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
