@@ -13,13 +13,13 @@ const VantaBirds = (props) => {
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
-          minHeight: 500.0,
+          minHeight: 400.0,
           minWidth: 100.0,
           scale: 1.0,
           scaleMobile: 1.0,
-          backgroundColor: 0xffffff,
-          color1: 0x77ff,
-          color2: 0x63ced,
+          backgroundColor: 0xaaaaaa,
+          color1: 0x1837a3,
+          color2: 0x1837a3,
           colorMode: "lerp",
           birdSize: 0.9,
           wingSpan: 40.0,
@@ -28,8 +28,9 @@ const VantaBirds = (props) => {
           alignment: 1.0,
           cohesion: 100.0,
           quantity: 2.0,
-          backgroundAlpha: 0.00,
-
+          backgroundAlpha: 0,
+          xOffset: 0.5,
+          yOffset: 0.5,
         })
       );
     }
@@ -37,9 +38,7 @@ const VantaBirds = (props) => {
       if (vantaEffect) vantaEffect.destroy();
     };
   }, [vantaEffect]);
-  return <div ref={myRef}>
-    {/* Foreground content goes here */}
-    </div>;
+  return <div ref={myRef}>{/* Foreground content goes here */}</div>;
 };
 
 export default VantaBirds;

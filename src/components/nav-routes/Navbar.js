@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import SideDrawer from "./SideDrawer";
+import lightLogo from "../../media/wavesurface_art_white-03 copy.png";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -30,7 +31,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     textDecoration: "none",
   },
-  username: {},
+  logo: {
+    width: "15rem",
+  },
   container: { display: "flex" },
 }));
 
@@ -170,15 +173,11 @@ const Navbar = () => {
             handleClose={handleDrawerClose}
           />
 
-          <Typography
-            variant="h5"
-            color="inherit"
-            className={classes.title}
-            component={NavLink}
-            to="/"
-          >
-            waveSurface
-          </Typography>
+          <Link to="/">
+            <img className={classes.logo} src={lightLogo} alt="light Logo" />
+          </Link>
+
+          <Typography className={classes.title}></Typography>
           <Tabs value={false}>
             <Tab label="Preview" component={NavLink} to="/preview" />
           </Tabs>
