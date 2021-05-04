@@ -4,6 +4,7 @@ import SignUpForm from "../auth/SignUpForm";
 import Homepage from "../home/Homepage";
 import LoginForm from "../auth/LoginForm";
 import About from "../home/About";
+import Preview from "../home/Preview";
 import Instructionals from "../instructionals/Instructionals";
 import InstructionalRequest from "../instructionals/InstructionalRequest";
 import AdminRoute from "./AdminRoute";
@@ -29,6 +30,10 @@ export const Routes = () => {
 
         <Route exact path="/about">
           <About />
+        </Route>
+
+        <Route exact path="/preview">
+          <Preview />
         </Route>
 
         <AdminRoute exact path="/users">
