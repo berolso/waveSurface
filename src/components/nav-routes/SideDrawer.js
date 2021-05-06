@@ -13,7 +13,7 @@ import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles({
   paper: {
-    width: "15%",
+    width: "200px",
   },
 });
 
@@ -33,7 +33,7 @@ const SideDrawer = ({ history, drawerState, handleClose }) => {
     {
       text: "Bomian",
       icon: <ImportContactsIcon />,
-      onClick: () => history.push("/contact"),
+      onClick: () => history.push("/bomian"),
     },
   ];
   return (

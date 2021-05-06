@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import WaveServer from "../../api/waveServer";
 import UserContext from "../../context/UserContext";
+import AlertSnackbar from "./AlertSnackbar";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -20,8 +21,8 @@ const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="/">
+        waveSurface
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -63,7 +64,7 @@ const SignUpForm = () => {
   };
 
   const [formData, setFormData] = useState(initialState);
-  // const [formErrors, setFormErrors] = useState([]);
+  const [alert, setAlert] = useState("");
 
   const { setToken } = useContext(UserContext);
 
@@ -71,10 +72,23 @@ const SignUpForm = () => {
     evt.preventDefault();
     try {
       const apiToken = await WaveServer.signup(formData);
+      setAlert({
+        reset: () => setAlert(""),
+        message: `Welcome! Your account has been submitted for approval. Following approval you will be granted full access.`,
+        severity: "success",
+      });
       setToken(apiToken);
-      history.push("/");
+      setFormData(initialState);
+      setTimeout(() => {
+        history.push("/");
+      }, 4000);
     } catch (err) {
       console.error("signup failed", err);
+      setAlert({
+        reset: () => setAlert(""),
+        message: `hmm.. ${err[0]}`,
+        severity: "error",
+      });
     }
   };
 
@@ -216,6 +230,7 @@ const SignUpForm = () => {
       <Box mt={5}>
         <Copyright />
       </Box>
+      {alert && <AlertSnackbar {...alert} />}
     </Container>
   );
 };

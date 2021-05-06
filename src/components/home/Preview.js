@@ -13,7 +13,6 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 import { makeStyles } from "@material-ui/core/styles";
-import ChatIcon from "@material-ui/icons/Chat";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,7 +53,6 @@ const Preview = () => {
             ))}
           </Grid>
 
-          {/* <Card></Card> */}
         </main>
       </Container>
     </>

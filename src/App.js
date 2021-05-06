@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
 import jwt from "jsonwebtoken";
 import { Routes } from "./components/nav-routes/Routes";
 import Navbar from "./components/nav-routes/Navbar";
+import AlertSnackbar from "./components/auth/AlertSnackbar";
 
 import "./App.css";
 
@@ -15,6 +18,8 @@ function App() {
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [currentUser, setCurrentUser] = useState(null);
   const [infoLoaded, setInfoLoaded] = useState(false);
+  const [alert, setAlert] = useState("");
+  const history = useHistory();
 
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -42,13 +47,19 @@ function App() {
       setToken(newToken);
       return { success: true };
     } catch (err) {
-      return { success: false, err };
+      return { success: false, errors: err };
     }
   };
 
   const logout = () => {
     setCurrentUser(null);
     setToken(null);
+    setAlert({
+      reset: () => setAlert(""),
+      message: `Successfully Logged out`,
+      severity: "success",
+    });
+    history.push("/");
   };
   return (
     <div className="App">
@@ -59,6 +70,7 @@ function App() {
         <Routes />
         {infoLoaded}
       </UserContext.Provider>
+      {alert && <AlertSnackbar {...alert} />}
     </div>
   );
 }

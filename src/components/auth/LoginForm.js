@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
+import AlertSnackbar from "./AlertSnackbar";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -14,6 +15,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -53,8 +55,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="/">
+        waveSurace
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -71,17 +73,24 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
+  const [formErrors, setFormErrors] = useState([]);
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
       const result = await login(formData);
+      console.log(result);
       if (result.success) {
         history.push(`/`);
         console.log("logged in");
+      } else {
+        setFormErrors(result.errors);
       }
     } catch (err) {
-      console.log("failed login");
+      console.log("failed login", err);
+      setFormErrors([
+        "sorry, we are experienceing technical difficulties with our login server.",
+      ]);
     }
   };
 
@@ -105,7 +114,7 @@ const LoginForm = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form onSubmit={handleSubmit} className={classes.form} noValidate>
+          <form onSubmit={handleSubmit} className={classes.form}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -169,6 +178,13 @@ const LoginForm = () => {
           </form>
         </div>
       </Grid>
+      {formErrors.length && (
+        <AlertSnackbar
+          reset={() => setFormErrors([])}
+          message={formErrors}
+          severity="error"
+        />
+      )}
     </Grid>
   );
 };

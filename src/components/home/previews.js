@@ -6,7 +6,7 @@ import instructionals from "../../media/instructionals.png";
 export const previewMain = {
   title: "Resources for All things sheet wave",
   description:
-    "We want to share our knowlege and help benefit the industry we love. Free resource to share instructionals, drawings, materials, and anything we can to bring health to the industry",
+    "I want to share my knowlege and contribute to the industry I know some things about. The goal is a free resource to share instructionals, drawings, materials, and anything I can to bring health to the industry and eliminate dependency",
   image: instructionals,
   imgText: "image text",
   linkText: "Continue reading…",
@@ -23,14 +23,14 @@ export const previews = [
   {
     title: "Intuitive Search",
     description:
-      "focus your search and find exactly what you need with our clickable map. if it's not there we'll do our best to add it",
+      "focus your search and find exactly what you need with our clickable map. if it's not there I'll do our best to add it",
     image: sections,
     imageText: "Image Text",
   },
   {
-    title: "Slack integration",
+    title: "Slack Integration",
     description:
-      "We've built this feature to integrate directly to our slack channel. This alows our team to start working on requests collectively the second they are made and your contact info is available to respond via text. No more inquiry emails sent to the @info ether.",
+      "I've built this feature to integrate directly to our slack channel. This alows a team of contributers to start working on requests collectively the second they are made and your contact info is available to respond via text. No more inquiry emails sent to the @info ether.",
     image: slack,
     imageText: "Image Text",
   },
