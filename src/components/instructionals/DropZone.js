@@ -60,7 +60,11 @@ const img = {
   height: "100%",
 };
 
+const dash = { borderStyle: "dotted", borderColor: "#e3e3e3" };
+
 function Previews({ files, setFiles }) {
+  // const classes = useStyles();
+
   const {
     getRootProps,
     getInputProps,
@@ -109,9 +113,13 @@ function Previews({ files, setFiles }) {
   return (
     <section className="container">
       {console.log(files)}
-      <div {...getRootProps({ className: { styles } })}>
-        <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
+      <div>
+        <div {...getRootProps({ styles })}>
+          <input {...getInputProps()} />
+          <p style={dash}>
+            Drag 'n' drop some files here, or click to select files
+          </p>
+        </div>
       </div>
       <aside style={thumbsContainer}>{thumbs}</aside>
     </section>

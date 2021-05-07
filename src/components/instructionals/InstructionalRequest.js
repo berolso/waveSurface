@@ -1,7 +1,10 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+
 import WaveServer from "../../api/waveServer";
 import UserContext from "../../context/UserContext";
 import DropZone from "./DropZone";
+import AlertSnackbar from "../auth/AlertSnackbar";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -14,7 +17,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import ChatIcon from "@material-ui/icons/Chat";
 import { Container } from "@material-ui/core";
-// import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,8 +55,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const InstructionalRequest = () => {
+  const [alert, setAlert] = useState("");
+
   const classes = useStyles();
-  // const history = useHistory();
+  const history = useHistory();
   const { currentUser } = useContext(UserContext);
 
   const initialState = {};
@@ -68,11 +72,12 @@ const InstructionalRequest = () => {
       const data = { ...formData, ...currentUser };
 
       const result = await WaveServer.sendRequestToSlack(data, dropZoneFiles);
-      // history.push(`/instructionals`);
-      console.log("request success", result);
+      setAlert("Request submitted. Thank You");
+      // history.push(`/instructionals/`);
+      setFormData(initialState)
       // }
     } catch (err) {
-      console.log("request failed");
+      setAlert("request failed");
     }
   };
 
@@ -97,7 +102,7 @@ const InstructionalRequest = () => {
             <Typography component="h1" variant="h5">
               Upload request
             </Typography>
-            <form onSubmit={handleSubmit} className={classes.form} noValidate>
+            <form onSubmit={handleSubmit} className={classes.form}>
               <Typography
                 variant="h5"
                 align="center"
@@ -115,6 +120,7 @@ const InstructionalRequest = () => {
                 value={formData.description}
                 onChange={handleChange}
                 fullWidth
+                required
                 variant="outlined"
               />
               <input
@@ -125,9 +131,9 @@ const InstructionalRequest = () => {
                 type="file"
               />
 
-              <Container>
+              <div>
                 <DropZone files={dropZoneFiles} setFiles={setDropZoneFiles} />
-              </Container>
+              </div>
 
               <Button
                 type="submit"
@@ -142,6 +148,13 @@ const InstructionalRequest = () => {
           </div>
         </Grid>
       </Grid>
+      {alert && (
+        <AlertSnackbar
+          reset={() => setAlert("")}
+          message={alert}
+          severity="success"
+        />
+      )}
     </>
   );
 };

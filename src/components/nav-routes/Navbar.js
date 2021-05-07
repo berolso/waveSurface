@@ -135,7 +135,13 @@ const Navbar = () => {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>Profile 🚧</MenuItem>
-        <MenuItem onClick={handleClose}>My account 🚧</MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component={NavLink}
+          to={`/users/${currentUser && currentUser.username}`}
+        >
+          My Account
+        </MenuItem>
         {currentUser && currentUser.isAdmin && AdminMenu}
         <Divider />
         <MenuItem onClick={handleLogOut}>Logout</MenuItem>

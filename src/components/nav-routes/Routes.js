@@ -10,6 +10,7 @@ import Instructionals from "../instructionals/Instructionals";
 import InstructionalRequest from "../instructionals/InstructionalRequest";
 import AdminRoute from "./AdminRoute";
 import FullAccessRoute from "./UserRoute";
+import UserUpdateForm from "../users/UserUpdateForm";
 
 import { Users } from "../users/Users";
 
@@ -41,9 +42,9 @@ export const Routes = () => {
           <Bomian />
         </Route>
 
-        <AdminRoute exact path="/users">
-          <Users />
-        </AdminRoute>
+        <FullAccessRoute exact path="/users/:username">
+          <UserUpdateForm />
+        </FullAccessRoute>
 
         <FullAccessRoute exact path="/instructionals/request">
           <InstructionalRequest />
@@ -52,6 +53,10 @@ export const Routes = () => {
         <FullAccessRoute exact path="/instructionals">
           <Instructionals />
         </FullAccessRoute>
+
+        <AdminRoute exact path="/users">
+          <Users />
+        </AdminRoute>
 
         <Redirect to="/" />
       </Switch>

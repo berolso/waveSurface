@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 import { Route, Redirect } from "react-router-dom";
 import UserContext from "../../context/UserContext";
+
 
 /** "Higher-Order Component" for private routes.
  *
@@ -9,9 +10,9 @@ import UserContext from "../../context/UserContext";
  * route if so. If no user is present, redirects to login form. If not user redirect to homepage
  */
 
-function FullAccessRoute({ exact, path, children }) {
-  const { currentUser } = useContext(UserContext);
-
+function FullAccessRoute({ exact, path, children}) {
+  const {currentUser} = useContext(UserContext)
+  console.log('curus**', currentUser)
   if (!currentUser) {
     return <Redirect to="/login" />;
   }
