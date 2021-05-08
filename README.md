@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# waveSurface
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Live Demo](http://afraid-offer.surge.sh/users)
 
-## Available Scripts
+[Backend API](https://wavesurface.herokuapp.com)
 
-In the project directory, you can run:
+### What it does
 
-### `npm start`
+This site serves as a resource platform for sheetwave construction. Since that's what i spent the last couple years doing i wanted to create a site to centralize all the information i have and will continue to gather and make it available to anyone interested.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A key feature leverages Slack API's to interact directly with a client interface hosted on the site. Verified users can submit quesitons from the site directly to a slack workspace. Inside slack instructionals can be compiled and deployed to the site as JSON allowing slack to be used as a primitive CMS for site content.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Features
 
-### `npm test`
+I wanted different user permissions to have some ability to manually control access to different sections. There is basic, fullAccess and Admin levels of authorizaiton. permissions are stored in localstroage with JWT's. Users, instructionals and sections are stored in a relational postgres database and calls are made with a custom axios class and static methods.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+instructionals are generated with JSON objects sent from slack where links and files are hosted.
 
-### `npm run build`
+I relied heavily on material ui for styling. I did this for speed and didn't want to spend a lot of time making the interface 'pretty', for me it was worth the performance cost to accomplish the goals of this application. As a client side render i opted to use redux as well as native context for state managment. I wanted to get experience using both and discover how they were different.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Test Routes
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c16b96f70bb4b6de0703)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tech
 
-### `npm run eject`
+Front End - React bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Back End - Posgres DB, Node, Express Routing
