@@ -2,26 +2,28 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Markdown from "./Markdown";
+import Story from './Story'
 
 import { Collapse } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
-    maxWidth: 645,
-    background: "rgba(0,0,0,0.5)",
-    margin: "20px",
+    width: '100%',
   },
-}));
+});
 
 const About = ({ checked = true }) => {
   const classes = useStyles();
 
   return (
+    <div className={classes.root}>
     <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
       <div>
-        <Markdown />
+        {/* <Markdown className={classes.root}/> */}
+        <Story />
       </div>
     </Collapse>
+      </div>
   );
 };
 

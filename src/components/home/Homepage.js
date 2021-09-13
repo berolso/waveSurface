@@ -1,26 +1,18 @@
 import React from "react";
-
 import VantaBirds from "./VantaBirds";
 import Landing from "./Landing";
 import LandingBelow from "./LandingBelow";
-import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-
-const useStyles = makeStyles((theme) => ({
-  mainGrid: {
-    marginTop: theme.spacing(0),
-
-  },
-}));
+import './Homepage.css'
 
 const Homepage = () => {
   return (
-    <>
+    <div id='home-page'>
       <CssBaseline />
       <VantaBirds />
       <Landing />
       <LandingBelow />
-    </>
+    </div>
   );
 };
 export default Homepage;

@@ -5,8 +5,9 @@ import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import CompassCalibrationIcon from '@material-ui/icons/CompassCalibration';
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withTheme } from "@material-ui/core/styles";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import { withRouter } from "react-router-dom";
@@ -14,6 +15,8 @@ import { withRouter } from "react-router-dom";
 const useStyles = makeStyles({
   paper: {
     width: "200px",
+    backgroundColor: "#3f51b5",
+    color: 'white'
   },
 });
 
@@ -22,17 +25,17 @@ const SideDrawer = ({ history, drawerState, handleClose }) => {
   const itemsList = [
     {
       text: "Home",
-      icon: <InboxIcon />,
+      icon: <InboxIcon style={{ color: 'white' }}/>,
       onClick: () => history.push("/"),
     },
     {
       text: "About",
-      icon: <ImportContactsIcon />,
+      icon: <ImportContactsIcon style={{ color: 'white' }}/>,
       onClick: () => history.push("/about"),
     },
     {
       text: "Bomian",
-      icon: <ImportContactsIcon />,
+      icon: <CompassCalibrationIcon style={{ color: 'white' }}/>,
       onClick: () => history.push("/bomian"),
     },
   ];

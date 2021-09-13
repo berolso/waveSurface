@@ -9,7 +9,7 @@ import Bomian from "../home/Bomian";
 import Instructionals from "../instructionals/Instructionals";
 import InstructionalRequest from "../instructionals/InstructionalRequest";
 import AdminRoute from "./AdminRoute";
-import FullAccessRoute from "./UserRoute";
+import FullAccessRoute from "./FullAccessRoute";
 import UserUpdateForm from "../users/UserUpdateForm";
 
 import { Users } from "../users/Users";

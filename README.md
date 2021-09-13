@@ -18,12 +18,14 @@ instructionals are generated with JSON objects sent from slack where links and f
 
 I relied heavily on material ui for styling. I did this for speed and didn't want to spend a lot of time making the interface 'pretty', for me it was worth the performance cost to accomplish the goals of this application. As a client side render i opted to use redux as well as native context for state managment. I wanted to get experience using both and discover how they were different.
 
+## Tech
+
+Front End - React bootstrapped with [Create React App](https://github.com/facebook/create-react-app) Redux & native Context for state managment, Material-UI components. Slack Web API to deliver to slack workspace, Slack Events API to listen for workspace triggers.
+
+Back End - Posgres DB, Node, Express Routing.
+
+![Diagram](./waveSurface.com-flowChart.drawio.svg)
+
 #### Test Routes
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c16b96f70bb4b6de0703)
-
-## Tech
-
-Front End - React bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
-
-Back End - Posgres DB, Node, Express Routing

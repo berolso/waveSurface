@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import AlertSnackbar from "./AlertSnackbar";
-
+import brazil from "../../media/brazil.jpg";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -23,14 +23,14 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundImage: `url(${brazil})`,
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
         ? theme.palette.grey[50]
         : theme.palette.grey[900],
     backgroundSize: "cover",
-    backgroundPosition: "center",
+    backgroundPosition: "right",
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -178,7 +178,7 @@ const LoginForm = () => {
           </form>
         </div>
       </Grid>
-      {formErrors.length && (
+      {formErrors.length > 0 && (
         <AlertSnackbar
           reset={() => setFormErrors([])}
           message={formErrors}

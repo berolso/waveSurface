@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 
 import PreviewCard from "./PreviewCard";
-import {previews, previewMain} from "./previews";
+import { previews, previewMain } from "./previews";
 import PreviewHeader from "./PreviewHeader";
 import instructionals from "../../media/instructionals.png";
- 
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
@@ -19,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     // height: "100vh",
   },
   paper: {
+    // padding: "5%"
     // margin: "5%",
     // backgroundImage: {instructionals},
     // height: "70%",
@@ -37,9 +37,8 @@ const Preview = () => {
   return (
     <>
       <CssBaseline />
-      <Container maxWidth="lg">
+      <div maxWidth="lg">
         <Paper className={classes.paper}>
-          
           <PreviewHeader post={previewMain} />
         </Paper>
         <main>
@@ -52,9 +51,8 @@ const Preview = () => {
               />
             ))}
           </Grid>
-
         </main>
-      </Container>
+      </div>
     </>
   );
 };

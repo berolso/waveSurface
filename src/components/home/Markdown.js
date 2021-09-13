@@ -17,7 +17,7 @@ const options = {
       component: Typography,
       props: {
         gutterBottom: true,
-        variant: "h5",
+        variant: "h1",
       },
     },
     h2: { component: Typography, props: { gutterBottom: true, variant: "h6" } },
@@ -54,7 +54,7 @@ const Markdown = () => {
 
   return (
     <div>
-      <ReactMarkdown children={content} />
+      <ReactMarkdown children={content} options={options}/>
     </div>
   );
 };

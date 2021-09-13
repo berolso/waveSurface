@@ -1,0 +1,39 @@
+
+
+#story-board{
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+#story-board section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  scroll-snap-align: start;
+}
+
+.one{
+  height: 100vh;
+  /* background: #3f51b5; */
+}
+.one > div {
+  background: #000;
+  height: 500vh;
+}
+.one canvas{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  max-height: 100vh;
+  max-width: 100vw;
+  transform: translate(-50%, -50%);
+}
+.two{
+  background: rgb(28, 218, 113);
+}
+.three{
+  background: rgb(196, 160, 94);
+}
