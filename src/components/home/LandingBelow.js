@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import About from './About'
+import Unroll from './Unroll'
 // import ImageCard from "./ImageCard";
 // import places from "../static/places";
 import useWindowPosition from "../../hooks/useWindowPosition";
@@ -17,11 +17,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 const LandingBelow = () => {
   const classes = useStyles();
-  const checked = useWindowPosition("header");
+  const isOffScreen = useWindowPosition("header");
   return (
     <div className={classes.root} id="landing-below">
-       <About checked={checked} />
-      {/* <ImageCard place={places[0]} checked={checked} />  */}
+      <Unroll isOffScreen={isOffScreen} />
     </div>
   );
 };

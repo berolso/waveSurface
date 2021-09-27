@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../media/wavesurface_art-branding_stamp copy.png";
+import logo from "../../media/logo_black.svg";
 
 import { Link as Scroll } from "react-scroll";
 
@@ -25,13 +25,19 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: theme.palette.primary.main,
     fontSize: "2rem",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '1rem',
+    },
   },
   goDown: {
     color: theme.palette.primary.main,
     fontSize: "4rem",
   },
   logo: {
-    width: "60%",
+    width: "30rem",
+    [theme.breakpoints.down("xs")]: {
+      width: '15rem',
+    },
   },
 }));
 
@@ -49,7 +55,7 @@ const Landing = () => {
           direction="left"
           in={checked}
           {...(checked ? { timeout: 1000 } : {})}
-          collapsedHeight={50}
+          // collapsedHeight={50}
         >
           <div className={classes.container}>
             <h1 className={classes.title}>

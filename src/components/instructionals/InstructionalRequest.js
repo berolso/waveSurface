@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
 
+import slack from "../../media/slack_logo.png";
 import WaveServer from "../../api/waveServer";
 import UserContext from "../../context/UserContext";
 import DropZone from "./DropZone";
@@ -16,20 +16,19 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import ChatIcon from "@material-ui/icons/Chat";
-import { Container } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
   },
   image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundImage: `url(${slack})`,
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
         ? theme.palette.grey[50]
         : theme.palette.grey[900],
-    backgroundSize: "cover",
+    backgroundSize: "contain",
     backgroundPosition: "center",
   },
   paper: {
@@ -58,7 +57,6 @@ const InstructionalRequest = () => {
   const [alert, setAlert] = useState("");
 
   const classes = useStyles();
-  const history = useHistory();
   const { currentUser } = useContext(UserContext);
 
   const initialState = {};
@@ -71,11 +69,10 @@ const InstructionalRequest = () => {
     try {
       const data = { ...formData, ...currentUser };
 
-      const result = await WaveServer.sendRequestToSlack(data, dropZoneFiles);
+      await WaveServer.sendRequestToSlack(data, dropZoneFiles);
+
       setAlert("Request submitted. Thank You");
-      // history.push(`/instructionals/`);
-      setFormData(initialState)
-      // }
+      setFormData(initialState);
     } catch (err) {
       setAlert("request failed");
     }

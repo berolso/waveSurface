@@ -10,7 +10,7 @@ import UserContext from "../../context/UserContext";
  */
 
 function AdminRoute({ exact, path, children }) {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);  
 
   if (!currentUser) {
     return <Redirect to="/login" />;

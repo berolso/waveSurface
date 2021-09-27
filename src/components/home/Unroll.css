@@ -1,0 +1,50 @@
+
+/* #unroll-div{
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+} */
+
+/* #unroll-div section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  scroll-snap-align: start;
+} */
+
+/* .unroll {
+  height: 100vh;
+  background: #3f51b5;
+} */
+
+/* .unroll > div {
+  background: #000;
+  height: 500vh;
+} */
+
+.unroll canvas{
+  position: fixed;
+  left: 50%;
+  top: 50%; 
+  /* max-height: 100vh; */
+  max-width: 100vw;
+  transform: translate(-50%, -50%);
+}
+
+.unroll canvas[data-op] {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s linear;
+}
+
+.unroll canvas[data-op='false'] {
+  visibility: hidden;
+  opacity: 0;
+  left: 200%;
+  transition: visibility 0s .5s, opacity .2s ease-in, left .5s ease-in-out;
+}
+
+
+

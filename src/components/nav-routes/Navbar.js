@@ -2,18 +2,9 @@ import React, { useState, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import SideDrawer from "./SideDrawer";
-import lightLogo from "../../media/wavesurface_art_white-03 copy.png";
+import lightLogo from "../../media/logo_white.svg";
 
 import { makeStyles } from "@material-ui/core/styles";
-
-//
-import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
-import SearchIcon from "@material-ui/icons/Search";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import MoreIcon from "@material-ui/icons/MoreVert";
-//
 
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
@@ -21,12 +12,14 @@ import Divider from "@material-ui/core/Divider";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+
+import MenuIcon from "@material-ui/icons/Menu";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     width: "15rem",
     [theme.breakpoints.down("sm")]: {
-      width: "8rem",
+      width: "10rem",
     },
   },
   container: { display: "flex" },
@@ -66,7 +59,7 @@ const Navbar = () => {
   const { currentUser, logout } = useContext(UserContext);
   const [drawerState, setdrawerState] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 

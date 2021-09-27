@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -6,7 +7,6 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles({
   card: {
@@ -17,36 +17,33 @@ const useStyles = makeStyles({
   },
   cardMedia: {
     width: 200,
-    // height: 200
   },
 });
 
 const PreviewCard = ({preview}) => {
   const classes = useStyles();
 
+
+  console.log('link',Link.propTypes.to)
+
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href="#">
+      <CardActionArea component={Link} to={preview.link}>
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
               <Typography component="h2" variant="h5">
                 {preview.title}
               </Typography>
-              <Typography variant="subtitle1" color="textSecondary">
-                {preview.date}
-              </Typography>
-              <Typography variant="subtitle1" paragraph>
+              <Typography variant="subtitle1" color='textSecondary' paragraph>
                 {preview.description}
               </Typography>
               <Typography variant="subtitle1" color="primary">
-                Continue reading...
+                {preview.linkText}
               </Typography>
             </CardContent>
           </div>
-          <Hidden xsDown>
             <CardMedia className={classes.cardMedia} image={preview.image} title={preview.imageTitle} />
-          </Hidden>
         </Card>
       </CardActionArea>
     </Grid>

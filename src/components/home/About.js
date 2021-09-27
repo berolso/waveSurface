@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Markdown from "./Markdown";
+// import Markdown from "./Markdown";
 import Story from './Story'
 
 import { Collapse } from "@material-ui/core";

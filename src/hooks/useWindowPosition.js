@@ -1,18 +1,23 @@
 import { useLayoutEffect, useState } from "react";
 
 export default function useWindowPosition(id) {
-  const [animation, setAnimation] = useState(false);
+  const [isOffScreen, setOffScreen] = useState(false);
 
   useLayoutEffect(() => {
     function updatePosition() {
-      const offetSetHeight = window.document.getElementById(id).offsetHeight;
-      if (window.pageYOffset > offetSetHeight * 0.70) {
-        setAnimation(true);
+      //offsetHeight = distance from top to bottom of browser window
+      const offsetHeight = window.document.getElementById(id).offsetHeight;
+      // window.pageYOffset = distance scrolled from top
+      if (window.pageYOffset > offsetHeight * 0.7) {
+        setOffScreen(true);
+      }
+      if (window.pageYOffset < offsetHeight * 0.7) {
+        setOffScreen(false);
       }
     }
     window.addEventListener("scroll", updatePosition);
     updatePosition();
     return () => window.removeEventListener("scroll", updatePosition);
   }, [id]);
-  return animation;
+  return isOffScreen;
 }

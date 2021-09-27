@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 const UserUpdateForm = () => {
   const classes = useStyles();
-  const { setToken, currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   const initialState = {
     firstName: currentUser.firstName,

@@ -1,14 +1,15 @@
-# My story section..
+## <span style="color:#3f51b5; font-size: .5em">waveSurface</span>Origins..
 
-A bunch of text about my coding journey with and the goal of being able to build my own platform from scratch..
+<p style="text-align: left"> waveSurface really begins as a personal commitment to quality and refusal to compromise standards during my time working for flowrider.
 
----
+I've always dedicated myself to being able to deliver the highest quality product to customers and to ensure they are always setup for long term success.
 
-<p style="text-align: center;"> written in markdown and file displayed here</p>
+Over time I've absorbed a lot of feedback and experienced first hand what has worked well and what hasn't. I've always tried to learn what I needed to know in order to ensure better outcomes.
+
+This platform is a passion project to combine some of the skills i've learned over the years in Web Development, Software Engineering, Graphic/Motion Design, CAD Modeling, Product Design, Supply Chain/Logistics, Marketing/Sales.. All coming together around an industry I have a lot of knowledge in. 
+
+I look forward to developing the waveSurface project and continuing to innovate as the inspiration comes. 
+</p>
 
 
-
-<p style="text-align: center;"> 🚧 </p>
-
-
----
+<h2 style="text-align: center;"> 🚧 </h2>

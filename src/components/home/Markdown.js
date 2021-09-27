@@ -20,17 +20,37 @@ const options = {
         variant: "h1",
       },
     },
-    h2: { component: Typography, props: { gutterBottom: true, variant: "h6" } },
+    h2: {
+      component: Typography,
+      props: {
+        gutterBottom: true,
+        variant: "h2",
+        
+      },
+    },
     h3: {
       component: Typography,
-      props: { gutterBottom: true, variant: "subtitle1" },
+      props: { 
+        gutterBottom: true, 
+        variant: "subtitle1" 
+      },
     },
     h4: {
       component: Typography,
-      props: { gutterBottom: true, variant: "caption", paragraph: true },
+      props: {
+        gutterBottom: true, 
+        variant: "caption", 
+        paragraph: true 
+      },
     },
-    p: { component: Typography, props: { paragraph: true } },
-    a: { component: Link },
+    p: { 
+      component: Typography, 
+      props: { 
+        paragraph: true 
+      } 
+    },
+    a: { 
+      component: Link },
     li: {
       component: withStyles(styles)(({ classes, ...props }) => (
         <li className={classes.listItem}>
@@ -54,7 +74,7 @@ const Markdown = () => {
 
   return (
     <div>
-      <ReactMarkdown children={content} options={options}/>
+      <ReactMarkdown children={content} options={options} />
     </div>
   );
 };

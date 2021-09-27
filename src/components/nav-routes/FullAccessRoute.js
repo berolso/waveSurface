@@ -1,3 +1,5 @@
+// no longer used switched to single AuthRoute
+
 import React, {useContext} from "react";
 import { Route, Redirect } from "react-router-dom";
 import UserContext from "../../context/UserContext";

@@ -21,6 +21,14 @@ function App() {
   const [alert, setAlert] = useState("");
   const history = useHistory();
 
+  const loader = document.querySelector(".loader");
+
+  // loader while app is loaded
+  useEffect(() => {
+    loader.classList.remove("loader--hide");
+    loader.classList.add("loader--hide");
+  }, [loader.classList]);
+
   useEffect(() => {
     const getCurrentUser = async () => {
       // console.log("token", token);
@@ -61,6 +69,7 @@ function App() {
     });
     history.push("/");
   };
+
   return (
     <div className="App">
       <UserContext.Provider

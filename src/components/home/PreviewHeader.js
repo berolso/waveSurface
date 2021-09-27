@@ -1,49 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles";
-// import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
-import instructionals from "../../media/instructionals.png";
+import CardMedia from "@material-ui/core/CardMedia";
+import Card from "@material-ui/core/Card";
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
-    position: "relative",
-    // backgroundColor: theme.palette.grey[800],
     backgroundColor: "#3f51b5",
     color: theme.palette.common.white,
-    marginBottom: theme.spacing(4),
-    backgroundImage: instructionals,
-    backgroundSize: "50%",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "95% 10%",
-    [theme.breakpoints.up("sm")]: {
-      backgroundSize: "45%",
-      fontSize: '10px'
-    },
-    [theme.breakpoints.up("lg")]: {
-      backgroundSize: "35%",
-      backgroundPosition: "90% 10%"
-    },
-  },
-  overlay: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
-    // backgroundColor: "rgba(0,0,0,.3)",
+    marginBottom: theme.spacing(1),
   },
   mainFeaturedPostContent: {
     position: "relative",
-    width: "100%",
-    minHeight: "40vh",
     padding: theme.spacing(1),
-    [theme.breakpoints.up("sm")]: {
+    paddingTop: theme.spacing(5),
+    [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(2),
     },
   },
+  card: {
+    boxShadow: 'none'
+  },
+  cardMedia:{
+    height: 300,
+  }
 }));
 
 export default function PreviewHeader(props) {
@@ -51,35 +34,33 @@ export default function PreviewHeader(props) {
   const { post } = props;
 
   return (
-    <div
-      className={classes.mainFeaturedPost}
-      style={{ backgroundImage: `url(${post.image})` }}
-    >
-      {/* Increase the priority of the hero background image */}
-      {
-        <img
-          style={{ display: "none" }}
-          src={post.image}
-          alt={post.imageText}
-        />
-      }
-      <div className={classes.overlay} />
-      <Grid container>
-        <Grid item sm={6}>
-          <div className={classes.mainFeaturedPostContent}>
-            <Typography variant="h4" color="inherit" gutterBottom>
-              {post.title}
-            </Typography>
-            <Typography variant="subtitle1" color="inherit" paragraph>
-              {post.description}
-            </Typography>
-            <Link variant="subtitle1" href="#">
-              {post.linkText}
-            </Link>
-          </div>
+    <>
+      <div className={classes.mainFeaturedPost}>
+        <Grid className={classes.container} container spacing={0}>
+          <Grid item xs={12} sm={6}>
+            <div className={classes.mainFeaturedPostContent}>
+              <Typography variant="h4" color="inherit" gutterBottom>
+                {post.title}
+              </Typography>
+              <Typography variant="subtitle1" color="inherit" paragraph>
+                {post.description}
+              </Typography>
+              <Typography variant="subtitle1" color="inherit" component={Link} to={post.link}>
+                {post.linkText}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Card square={true} className={classes.card}>
+              <CardMedia
+                image={post.image}
+                className={classes.cardMedia}
+              ></CardMedia>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
+      </div>
+    </>
   );
 }
 
