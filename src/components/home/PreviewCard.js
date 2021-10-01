@@ -24,8 +24,6 @@ const PreviewCard = ({preview}) => {
   const classes = useStyles();
 
 
-  console.log('link',Link.propTypes.to)
-
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component={Link} to={preview.link}>

@@ -35,7 +35,7 @@ export const previews = [
   {
     title: "Slack Integration",
     description:
-      "I've built this feature to integrate directly to our slack channel. This alows a team of contributers to start working on requests collectively the second they are made and your contact info is available to respond via text. No more inquiry emails sent to the @info ether.",
+      "I've built this feature to integrate directly to our slack channel. This allows a team of contributers to start working on requests collectively the second they are made and your contact info is available to respond via text. No more inquiry emails sent to the info@ ether.",
     image: slack,
   },
 ];
